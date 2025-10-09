@@ -1,10 +1,26 @@
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
+    <div class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex justify-center h-screen">
+            <div class="hidden bg-center bg-cover lg:block lg:w-2/3" style="background-image: url({{asset('images/trailer.jpg')}});">
+                <div class="flex items-end pb-12 h-full px-20 bg-gray-900 bg-opacity-40">
+                    <div>
+                        <h2 class="text-4xl font-bold text-white">Transportes Especializados Linares S.A de C.V</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+                <div class="flex-1">
+                    <h2 class="mb-4 text-center text-5xl font-extrabold">Bienvenido.</h2>
+                 <x-authentication-card>
+        {{-- <x-slot name="logo">
             <x-authentication-card-logo />
-        </x-slot>
+        </x-slot> --}}
 
         <x-validation-errors class="mb-4" />
+        <div class="text-center uppercase my-5">
+            Ingresa credenciales
+        </div>
 
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -45,4 +61,9 @@
             </div>
         </form>
     </x-authentication-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </x-guest-layout>
