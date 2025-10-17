@@ -20,21 +20,24 @@
 
         <!-- Scripts -->
 
-         <wireui:scripts />
-        <script src="//unpkg.com/alpinejs" defer></script>
+
+
+          <wireui:scripts />
          @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
         <!-- Styles -->
         @livewireStyles
-        <script>
-        localStorage.theme = 'light'
-        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @stack('css')
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-gray-50">
 
         @include('layouts.includes.admin.navigation')
         @include('layouts.includes.admin.siderbar')
 
-        <div class="p-4 sm:ml-64 bg-gray-50">
+        <div class="p-4 sm:ml-64">
 
             <div class="mt-14 flex items-center">
                 @include('layouts.includes.admin.breadcrumb')
@@ -55,5 +58,23 @@
            <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
            {{-- fontawesome --}}
            <script src="https://kit.fontawesome.com/00b0f77ed0.js" crossorigin="anonymous"></script>
+
+           @if (session('success'))
+            <script>
+                Swal.fire(@json(session('success')));
+            </script>
+           @endif
+           @if (session('update'))
+            <script>
+                Swal.fire(@json(session('update')));
+            </script>
+           @endif
+            @if (session('delete'))
+            <script>
+                Swal.fire(@json(session('delete')));
+            </script>
+           @endif
+
+           @stack('js')
     </body>
 </html>

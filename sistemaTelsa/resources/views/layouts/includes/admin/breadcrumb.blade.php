@@ -4,9 +4,9 @@
 
         <ol class="flex flex-wrap">
             @foreach ($breadcrumbs as $item)
-            
+
                 <li class="text-sm leading-normal text-slate-700 {{ !$loop->first ? "pl-2 before:float-left before:pr-2 before:content-['/']" : '' }}">
-                    
+
                     @isset($item['href'])
                         <a href="{{$item['href']}}" class="opacity-50">
                             {{ $item['name'] }}
@@ -22,8 +22,8 @@
         </ol>
 
         @if (count($breadcrumbs) > 1)
-            
-            <h6 class="font-bold">
+
+            <h6 class="text-xl font-extrabold text-zinc-950 dark:text-white md:text-3xl">
                 {{ end($breadcrumbs)['name'] }}
             </h6>
 
