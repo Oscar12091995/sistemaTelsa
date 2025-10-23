@@ -1,29 +1,47 @@
 
     @php
     $links = [
-    [
-    'name' => 'Dashboard',
-    'icon' => 'fa-solid fa-chart-line',
-    'href' => route('admin.dashboard'),
-    'active' => request()->routeIs('admin.dashboard'),
-    ],
-    [
-    'header' => 'Administración RH'
-    ],
-    [
-    'name' => 'Recursos Humanos',
-    'icon' => 'fa-solid fa-user',
-    'href' => route('admin.dashboard'),
-    'active' => false,
-    'submenu' => [
-    [
-        'name' => 'Areas',
-        'icon' => 'fa-solid fa-address-book',
-        'href' => route('admin.areas.index'),
-        'active' => ('admin.areas.*'),
-    ]
-    ]
-    ]
+            [
+                'name' => 'Dashboard',
+                'icon' => 'fa-solid fa-chart-line',
+                'href' => route('admin.dashboard'),
+                'active' => request()->routeIs('admin.dashboard'),
+            ],
+               [
+                'header' => 'Administración RH'
+               ],
+            [
+                'name' => 'Recursos Humanos',
+                'icon' => 'fa-solid fa-user',
+                'href' => route('admin.dashboard'),
+                'active' => false,
+                'submenu' => [
+                        [
+                            'name' => 'Areas',
+                            'icon' => 'fa-solid fa-address-book',
+                            'href' => route('admin.areas.index'),
+                            'active' => ('admin.areas.*'),
+                        ],
+                        [
+                            'name' => 'Departamentos',
+                            'icon' => 'fa-solid fa-building',
+                            'href' => route('admin.departamentos.index'),
+                            'active' => ('admin.departamentos.*'),
+                        ],
+                          [
+                            'name' => 'Puestos',
+                            'icon' => 'fa-solid fa-building',
+                            'href' => route('admin.puestos.index'),
+                            'active' => ('admin.puestos.*'),
+                        ]
+                ]
+            ],
+            [
+                'name' => 'Empleados',
+                'icon' => 'fa-solid fa-users',
+                'href' => route('admin.empleados.index'),
+                'active' => request()->routeIs('admin.empleados.*'),
+            ],
     ];
     @endphp
 

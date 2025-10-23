@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\RH\Departamentos;
+use App\Models\RH\Puestos;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AreasSeeder::class
         ]);
+
+        Departamentos::factory(11)->create();
+        Puestos::factory(20)->create();
     }
 }

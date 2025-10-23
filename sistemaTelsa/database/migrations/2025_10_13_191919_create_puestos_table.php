@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('descripcion_puesto')->nullable();
             $table->integer('num_plazas')->nullable();
+            $table->decimal('salario_puesto', 10, 2)->nullable();
             $table->foreignId('departamento_id')
                 ->constrained()
                 ->onDelete('cascade');
