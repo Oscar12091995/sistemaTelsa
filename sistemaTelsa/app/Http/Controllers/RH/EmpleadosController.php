@@ -31,7 +31,29 @@ class EmpleadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'apellido_ap' => 'required|string|max:255',
+            'apellido_ma' => 'required|string|max:255',
+            'curp' => 'required|string|max:18|unique:empleados,curp',
+            'rfc' => 'required|string|max:13|unique:empleados,rfc',
+            'seguro_social' => 'required|string|max:11|unique:empleados,seguro_social',
+            'direccion' => 'required|string|max:500',
+            'municipio' => 'required|string|max:255',
+            'estado' => 'required|string|max:255',
+            'telefono' => 'required|string|max:15',
+            'puesto_id' => 'required|exists:puestos,id',
+        ]);
+        Empleados::create($data);
+        session()->flash('success',
+            [
+                'icon' => 'success',
+
+                'text' => 'El empleado se creo correctamente.',
+                'showConfirmButton' => false,
+                'timer' => 1500,
+            ]);
+        return redirect()->route('admin.empleados.index');
     }
 
     /**
@@ -47,7 +69,8 @@ class EmpleadosController extends Controller
      */
     public function edit(Empleados $empleado)
     {
-        return view('admin.empleados.edit', compact('empleado'));
+        $puestos = Puestos::all();
+        return view('admin.empleados.edit', compact('empleado', 'puestos'));
     }
 
     /**
@@ -55,7 +78,29 @@ class EmpleadosController extends Controller
      */
     public function update(Request $request, Empleados $empleado)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'apellido_ap' => 'required|string|max:255',
+            'apellido_ma' => 'required|string|max:255',
+            'curp' => 'required|string|max:18|unique:empleados,curp,' . $empleado->id,
+            'rfc' => 'required|string|max:13|unique:empleados,rfc,' . $empleado->id,
+            'seguro_social' => 'required|string|max:11|unique:empleados,seguro_social,' . $empleado->id,
+            'direccion' => 'required|string|max:500',
+            'municipio' => 'required|string|max:255',
+            'estado' => 'required|string|max:255',
+            'telefono' => 'required|string|max:15',
+            'puesto_id' => 'required|exists:puestos,id',
+        ]);
+        $empleado->update($data);
+        session()->flash('success',
+            [
+                'icon' => 'success',
+
+                'text' => 'El empleado se actualizo correctamente.',
+                'showConfirmButton' => false,
+                'timer' => 1500,
+            ]);
+        return redirect()->route('admin.empleados.index');
     }
 
     /**
@@ -63,6 +108,17 @@ class EmpleadosController extends Controller
      */
     public function destroy(Empleados $empleado)
     {
-        //
+        $empleado->delete();
+
+        session()->flash('success',
+            [
+                'icon' => 'success',
+
+                'text' => 'El empleado se elimino correctamente.',
+                'showConfirmButton' => false,
+                'timer' => 1500,
+            ]);
+
+        return redirect()->route('admin.empleados.index');
     }
 }

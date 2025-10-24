@@ -27,6 +27,7 @@ title="Nuevo Empleado"
                     placeholder="Seleccione un puesto"
                     :options="$puestos"
                     option-label="name"
+                    value="{{old('puesto_id')}}"
                     option-value="id"
                     name="puesto_id"
                 >
@@ -61,6 +62,11 @@ title="Nuevo Empleado"
             </div>
             <div >
                 <x-wire-input label="Estado" name="estado" placeholder="Estado" autofocus value="{{old('estado')}}" />
+            </div>
+    </div>
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div >
+                <x-wire-phone  label="Teléfono" name="telefono" placeholder="Teléfono" autofocus value="{{old('telefono')}}" />
             </div>
     </div>
     <div class="flex justify-end">

@@ -16,12 +16,20 @@ class EmpleadoTable extends DataTableComponent
         $this->setPrimaryKey('id');
     }
 
+
+    public function builder(): Builder
+    {
+        return Empleados::query()
+        ->with(['puesto'])
+        ->selectRaw("empleados.*, CONCAT(name, ' ', apellido_ap, ' ' , apellido_ma) as nombre_completo");
+    }
+
     public function columns(): array
     {
         return [
             Column::make("Id", "id")
                 ->sortable(),
-            Column::make("Nombre completo", "nombre_completo")
+            Column::make("Nombre completo", "name")
                 ->searchable()
                 ->sortable(),
             // Column::make("Name", "name")
@@ -58,10 +66,4 @@ class EmpleadoTable extends DataTableComponent
         ];
     }
 
-    public function builder(): Builder
-    {
-        return Empleados::query()
-        ->with(['puesto'])
-        ->selectRaw("empleados.*, CONCAT(name, ' ', apellido_ap, ' ', apellido_ma) as nombre_completo");
-    }
 }
